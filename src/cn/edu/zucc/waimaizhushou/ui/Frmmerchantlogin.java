@@ -34,36 +34,7 @@ public class Frmmerchantlogin extends JDialog implements ActionListener {
 	private JLabel labelPwd = new JLabel("商家登陆密码：");
 	private JTextField edtUserId = new JTextField(20);
 	private JPasswordField edtPwd = new JPasswordField(20);
-	public Frmmerchantlogin(Dialog f, String s, boolean b) {
-		super(f, s, b);
-		toolBar.setLayout(new FlowLayout(FlowLayout.RIGHT));
-		toolBar.add(this.btnRegister);
-		toolBar.add(btnLogin);
-		toolBar.add(btnCancel);
-		this.getContentPane().add(toolBar, BorderLayout.SOUTH);
-		workPane.add(labelUser);
-		workPane.add(edtUserId);
-		workPane.add(labelPwd);
-		workPane.add(edtPwd);
-		this.getContentPane().add(workPane, BorderLayout.CENTER);
-		this.setSize(320, 140);
-		// 屏幕居中显示
-		double width = Toolkit.getDefaultToolkit().getScreenSize().getWidth();
-		double height = Toolkit.getDefaultToolkit().getScreenSize().getHeight();
-		this.setLocation((int) (width - this.getWidth()) / 2,
-				(int) (height - this.getHeight()) / 2);
-
-		this.validate();
-
-		btnLogin.addActionListener(this);
-		btnCancel.addActionListener(this);
-		this.btnRegister.addActionListener(this);
-		this.addWindowListener(new WindowAdapter() {
-			public void windowClosing(WindowEvent e) {
-				System.exit(0);
-			}
-		});
-	}
+	
 	
 	public Frmmerchantlogin(Frame f, String s, boolean b) {
 		super(f, s, b);
@@ -109,7 +80,7 @@ public class Frmmerchantlogin extends JDialog implements ActionListener {
 			this.setVisible(false);
 			
 		} else if (e.getSource() == this.btnCancel) {
-			this.setVisible(false);
+			System.exit(0);
 		} else if(e.getSource()==this.btnRegister){
 			Frmmerchantregist dlg=new Frmmerchantregist(this,"商家注册",true);
 			dlg.setVisible(true);

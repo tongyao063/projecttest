@@ -26,30 +26,39 @@ import cn.edu.zucc.waimaizhushou.model.Beanuserd;
 import cn.edu.zucc.waimaizhushou.util.BaseException;
 
 
-public class FrmLogin extends JDialog implements ActionListener {
+public class Frmimprovepersonalinfo extends JDialog implements ActionListener {
 	private JPanel toolBar = new JPanel();
 	private JPanel workPane = new JPanel();
-	private JButton btnLogin = new JButton("用户登陆");
+	private JButton btnvip = new JButton("是否会员");
+	private JButton btndetermine = new JButton("确定");
 	private JButton btnCancel = new JButton("退出");
-	private JButton btnRegister = new JButton("用户注册");
-	
-	private JLabel labelUser = new JLabel("用户id：");
-	private JLabel labelPwd = new JLabel("密码：");
-	private JTextField edtUserId = new JTextField(20);
-	private JPasswordField edtPwd = new JPasswordField(20);
+
+	private JLabel labelgender = new JLabel("性别：");
+	private JLabel labelphone = new JLabel("电话号码：");
+	private JLabel labelemail = new JLabel("邮箱：");
+	private JLabel labelcity = new JLabel("城市：");
+	private JTextField edtgender = new JTextField(20);
+	private JTextField edtphone = new JTextField(20);
+	private JTextField edtemail = new JTextField(30);
+	private JTextField edtcity = new JTextField(20);
+	private JTextField edtvip = new JTextField(20);
 
 	
-	public FrmLogin(Frame f, String s, boolean b) {
+	public Frmimprovepersonalinfo(Frame f, String s, boolean b) {
 		super(f, s, b);
 		toolBar.setLayout(new FlowLayout(FlowLayout.RIGHT));
-		toolBar.add(this.btnRegister);
-		toolBar.add(btnLogin);
+		toolBar.add(this.btnvip);
+		toolBar.add(this.btndetermine);
 		toolBar.add(btnCancel);
 		this.getContentPane().add(toolBar, BorderLayout.SOUTH);
-		workPane.add(labelUser);
-		workPane.add(edtUserId);
-		workPane.add(labelPwd);
-		workPane.add(edtPwd);
+		workPane.add(labelgender);
+		workPane.add(edtgender);
+		workPane.add(labelphone);
+		workPane.add(edtphone);
+		workPane.add(labelemail);
+		workPane.add(edtemail);
+		workPane.add(labelcity);
+		workPane.add(edtcity);
 		this.getContentPane().add(workPane, BorderLayout.CENTER);
 		this.setSize(320, 140);
 		// 屏幕居中显示
@@ -59,10 +68,10 @@ public class FrmLogin extends JDialog implements ActionListener {
 				(int) (height - this.getHeight()) / 2);
 
 		this.validate();
-
-		btnLogin.addActionListener(this);
-		btnCancel.addActionListener(this);
-		this.btnRegister.addActionListener(this);
+		
+		this.btnvip.addActionListener(this);
+		this.btndetermine.addActionListener(this);
+		this.btnCancel.addActionListener(this);
 		this.addWindowListener(new WindowAdapter() {
 			public void windowClosing(WindowEvent e) {
 				System.exit(0);
@@ -72,24 +81,21 @@ public class FrmLogin extends JDialog implements ActionListener {
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
-		if (e.getSource() == this.btnLogin) {
-			int p =Integer.parseInt(this.edtUserId.getText());
-			int userid=p;
-			String pwd=new String(this.edtPwd.getPassword());
+		if(e.getSource()==this.btnCancel)
+			this.setVisible(false);
+		else if(e.getSource()==this.btndetermine){
 			try {
-				Beanuserd.currentLoginuser= WaiMaiUtil.useriManager.login(userid, pwd);
+				String gender=new String(this.edtgender.getText());
+				String phonenum=new String(this.edtphone.getText());
+				String email=new String(this.edtemail.getText());
+				String city=new String(this.edtcity.getText());
+				WaiMaiUtil.useriManager.improvepersonalinfo(gender, phonenum, email, city,Beanuserd.currentLoginuser);
+				this.setVisible(false);
 			} catch (BaseException e1) {
 				JOptionPane.showMessageDialog(null, e1.getMessage(), "错误",JOptionPane.ERROR_MESSAGE);
 				return;
 			}
-			this.setVisible(false);
-			
-		} else if (e.getSource() == this.btnCancel) {
-			System.exit(0);
-		}  else if (e.getSource() == this.btnRegister) {
-			FrmRegister adm=new FrmRegister(this,"用户注册",true);
-			adm.setVisible(true);
-		} 
+		}
 	}
 
 }

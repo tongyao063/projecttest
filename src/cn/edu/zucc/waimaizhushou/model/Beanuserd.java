@@ -2,6 +2,7 @@ package cn.edu.zucc.waimaizhushou.model;
 import java.util.Date;
 
 public class Beanuserd {
+	public static Beanuserd currentLoginuser=null;
 	private int userid;
 	private String username;
 	private String usergender;
@@ -10,7 +11,7 @@ public class Beanuserd {
 	private String useremail;
 	private String usercity;
 	private Date userregisttime;
-	private boolean vipjud;
+	private String vipjud;
 	private Date vipdeadline;
 	
 	public int getUserid() {
@@ -18,6 +19,18 @@ public class Beanuserd {
 	}
 	public void setUserid(int userid) {
 		this.userid = userid;
+	}
+	public static Beanuserd getCurrentLoginuser() {
+		return currentLoginuser;
+	}
+	public static void setCurrentLoginuser(Beanuserd currentLoginuser) {
+		Beanuserd.currentLoginuser = currentLoginuser;
+	}
+	public String getVipjud() {
+		return vipjud;
+	}
+	public void setVipjud(String vipjud) {
+		this.vipjud = vipjud;
 	}
 	public String getUsername() {
 		return username;
@@ -60,12 +73,6 @@ public class Beanuserd {
 	}
 	public void setUserregisttime(Date userregisttime) {
 		this.userregisttime = userregisttime;
-	}
-	public boolean isVipjud() {
-		return vipjud;
-	}
-	public void setVipjud(boolean vipjud) {
-		this.vipjud = vipjud;
 	}
 	public Date getVipdeadline() {
 		return vipdeadline;

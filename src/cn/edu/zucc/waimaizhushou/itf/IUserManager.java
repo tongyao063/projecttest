@@ -1,7 +1,6 @@
 package cn.edu.zucc.waimaizhushou.itf;
 
 import cn.edu.zucc.waimaizhushou.model.BeanUser;
-import cn.edu.zucc.waimaizhushou.model.Beanuserd;
 import cn.edu.zucc.waimaizhushou.util.BaseException;
 
 public interface IUserManager {
@@ -16,8 +15,7 @@ public interface IUserManager {
 	 * @return
 	 * @throws BaseException
 	 */
-	//public BeanUser reg(String userid, String pwd,String pwd2) throws BaseException;
-	public Beanuserd regist(String userid, String pwd,String pwd2) throws BaseException;
+	public BeanUser reg(String userid, String pwd,String pwd2) throws BaseException;
 	/**
 	 * 登陆
 	 * 1、如果用户不存在或者密码错误，抛出一个异常

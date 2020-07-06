@@ -15,8 +15,9 @@ import javax.swing.JPanel;
 import javax.swing.JPasswordField;
 import javax.swing.JTextField;
 
+
 import cn.edu.zucc.waimaizhushou.WaiMaiUtil;
-import cn.edu.zucc.waimaizhushou.model.BeanUser;
+import cn.edu.zucc.waimaizhushou.model.Beanuserd;
 import cn.edu.zucc.waimaizhushou.util.BaseException;
 
 public class FrmModifyPwd extends JDialog implements ActionListener {
@@ -54,7 +55,10 @@ public class FrmModifyPwd extends JDialog implements ActionListener {
 			this.setVisible(false);
 		else if(e.getSource()==this.btnOk){
 			try {
-				WaiMaiUtil.userManager.changePwd(BeanUser.currentLoginUser,new String(edtPwdOld.getPassword()),new String(edtPwd.getPassword()),new String(edtPwd2.getPassword()));
+				String oldPwd=new String(this.edtPwdOld.getPassword());
+				String newPwd=new String(this.edtPwd.getPassword());
+				String newPwd2=new String(this.edtPwd2.getPassword());
+				WaiMaiUtil.useriManager.changePwd(oldPwd,newPwd,newPwd2,Beanuserd.currentLoginuser);
 				this.setVisible(false);
 			} catch (BaseException e1) {
 				JOptionPane.showMessageDialog(null, e1.getMessage(), "´íÎó",JOptionPane.ERROR_MESSAGE);

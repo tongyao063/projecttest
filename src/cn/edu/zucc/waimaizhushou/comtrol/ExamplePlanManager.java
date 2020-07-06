@@ -7,7 +7,6 @@ import java.util.List;
 import java.util.*;
 
 import cn.edu.zucc.waimaizhushou.itf.IPlanManager;
-import cn.edu.zucc.waimaizhushou.itf.IUserManager;
 import cn.edu.zucc.waimaizhushou.model.BeanPlan;
 import cn.edu.zucc.waimaizhushou.model.BeanUser;
 import cn.edu.zucc.waimaizhushou.util.BaseException;

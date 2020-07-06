@@ -1,14 +1,15 @@
 package cn.edu.zucc.waimaizhushou.comtrol;
 
+import cn.edu.zucc.waimaizhushou.util.BusinessException;
+
 import java.sql.Connection;
 import java.sql.SQLException;
 
-import cn.edu.zucc.waimaizhushou.itf.IUserManager;
-import cn.edu.zucc.waimaizhushou.model.BeanUser;
-import cn.edu.zucc.waimaizhushou.util.BaseException;
-import cn.edu.zucc.waimaizhushou.util.BusinessException;
 import cn.edu.zucc.waimaizhushou.util.DBUtil;
 import cn.edu.zucc.waimaizhushou.util.DbException;
+import cn.edu.zucc.waimaizhushou.model.BeanUser;
+import cn.edu.zucc.waimaizhushou.util.BaseException;
+import cn.edu.zucc.waimaizhushou.itf.IUserManager;
 
 
 public class ExampleUserManager implements IUserManager {

@@ -21,52 +21,35 @@ import cn.edu.zucc.waimaizhushou.model.BeanUser;
 import cn.edu.zucc.waimaizhushou.model.Beanuserd;
 import cn.edu.zucc.waimaizhushou.util.BaseException;
 
-public class FrmRegister extends JDialog implements ActionListener {
+public class Frmvipregist extends JDialog implements ActionListener {
 	private JPanel toolBar = new JPanel();
 	private JPanel workPane = new JPanel();
-	private Button btnOk = new Button("注册");
+	private Button btnOk = new Button("确定");
 	private Button btnCancel = new Button("取消");
 	
-	private JLabel labelUser = new JLabel("用户id：");
-	private JLabel labelUsername = new JLabel("用户姓名：");
-	private JLabel labelPwd = new JLabel("密码：");
-	private JLabel labelPwd2 = new JLabel("密码：");
-	private JTextField edtUserId = new JTextField(20);
-	private JTextField edtUsername = new JTextField(20);
-	private JPasswordField edtPwd = new JPasswordField(20);
-	private JPasswordField edtPwd2 = new JPasswordField(20);
-	public FrmRegister(Dialog f, String s, boolean b) {
+	private JLabel labelregistvip = new JLabel("是否确定开通会员");
+	public Frmvipregist(Dialog f, String s, boolean b) {
 		super(f, s, b);
 		toolBar.setLayout(new FlowLayout(FlowLayout.RIGHT));
 		toolBar.add(this.btnOk);
 		toolBar.add(btnCancel);
 		this.getContentPane().add(toolBar, BorderLayout.SOUTH);
-		workPane.add(labelUser);
-		workPane.add(edtUserId);
-		workPane.add(labelUsername);
-		workPane.add(edtUsername);
-		workPane.add(labelPwd);
-		workPane.add(edtPwd);
-		workPane.add(labelPwd2);
-		workPane.add(edtPwd2);
+		workPane.add(labelregistvip);
+
 		this.getContentPane().add(workPane, BorderLayout.CENTER);
 		this.setSize(300, 180);
 		this.btnCancel.addActionListener(this);
 		this.btnOk.addActionListener(this);
 	}
 	
-	public FrmRegister(Frame f, String s, boolean b) {
+	public Frmvipregist(Frame f, String s, boolean b) {
 		super(f, s, b);
 		toolBar.setLayout(new FlowLayout(FlowLayout.RIGHT));
 		toolBar.add(this.btnOk);
 		toolBar.add(btnCancel);
 		this.getContentPane().add(toolBar, BorderLayout.SOUTH);
-		workPane.add(labelUser);
-		workPane.add(edtUserId);
-		workPane.add(labelPwd);
-		workPane.add(edtPwd);
-		workPane.add(labelPwd2);
-		workPane.add(edtPwd2);
+		workPane.add(labelregistvip);
+
 		this.getContentPane().add(workPane, BorderLayout.CENTER);
 		this.setSize(300, 180);
 		this.btnCancel.addActionListener(this);
@@ -77,13 +60,8 @@ public class FrmRegister extends JDialog implements ActionListener {
 		if(e.getSource()==this.btnCancel)
 			this.setVisible(false);
 		else if(e.getSource()==this.btnOk){
-			int p =Integer.parseInt(this.edtUserId.getText());
-			int userid=p;
-			String useriname=this.edtUsername.getText();
-			String pwd1=new String(this.edtPwd.getPassword());
-			String pwd2=new String(this.edtPwd2.getPassword());
 			try {
-				Beanuserd user=WaiMaiUtil.useriManager.reg(userid, useriname, pwd1, pwd2);
+				WaiMaiUtil.useriManager.vipregistinfo(Beanuserd.currentLoginuser);
 				this.setVisible(false);
 			} catch (BaseException e1) {
 				JOptionPane.showMessageDialog(null, e1.getMessage(),"错误",JOptionPane.ERROR_MESSAGE);
